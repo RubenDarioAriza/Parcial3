@@ -1,0 +1,4 @@
+P001;Juego de sala;1000000
+P002;Juego de Comedor;1200000
+P003;Nevera;800000
+P004;Estufa;500000
