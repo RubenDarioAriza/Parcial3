@@ -1,0 +1,56 @@
+--TABLA Ventas
+CREATE TABLE Venta(CodigoSede VARCHAR(12)not null,
+CodigoProducto varchar(15)not null,
+Valor varchar(15)not null);
+--TABLA Productos
+CREATE TABLE Producto(CodigoProducto VARCHAR(12)not null,
+NombreProducto varchar(15)not null,
+Valor varchar(15)not null);
+--TABLA Sedes
+CREATE TABLE Sede(CodigoSede VARCHAR(12)not null,
+Nombre varchar(15)not null);
+
+BULK
+insert Venta
+FROM 'D:\Universidad\Septimo Semestre\PG3\Tercer Corte\cosas para el parcial\Parcial3\Log.txt'
+WITH
+(
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n'
+);
+BULK
+insert Venta
+FROM 'D:\Universidad\Septimo Semestre\PG3\Tercer Corte\cosas para el parcial\Parcial3\Sede 01.txt'
+WITH
+(
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n'
+);
+BULK
+insert Venta
+FROM 'D:\Universidad\Septimo Semestre\PG3\Tercer Corte\cosas para el parcial\Parcial3\Sede 02.txt'
+WITH
+(
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n'
+);
+BULK
+insert Venta
+FROM 'D:\Universidad\Septimo Semestre\PG3\Tercer Corte\cosas para el parcial\Parcial3\Sede 03.txt'
+WITH
+(
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n'
+);
+CREATE PROCEDURE GuardarVenta
+    @CodigoSede VARCHAR(12),
+    @CodigoProducto VARCHAR(15),
+    @Valor VARCHAR(15)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insertar la venta en la tabla Ventas
+    INSERT INTO Ventas (CodigoSede, CodigoProducto, Valor)
+    VALUES (@CodigoSede, @CodigoProducto, @Valor);
+END
